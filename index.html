@@ -1,11 +1,90 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <title>Mines Pro</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mines Pro</title>
+
+<style>
+body{
+    background:#111;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+}
+
+h1{
+    margin-top:20px;
+}
+
+#game{
+    display:grid;
+    grid-template-columns:repeat(5,70px);
+    gap:10px;
+    justify-content:center;
+    margin-top:30px;
+}
+
+.tile{
+    width:70px;
+    height:70px;
+    background:#222;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.tile:hover{
+    background:#333;
+}
+
+.safe{
+    background:green;
+}
+
+.mine{
+    background:red;
+}
+</style>
 </head>
-<body style="font-family: Arial; text-align:center; margin-top:100px;">
-<h1>🎮 SITE A FUNCIONAR AGORA</h1>
-  <p>O site está a funcionar ✔️</p>
+
+<body>
+
+<h1>🎮 Mines PRO</h1>
+<p>Encontra as casas seguras!</p>
+
+<div id="game"></div>
+
+<script>
+const game = document.getElementById("game");
+
+let minePosition = Math.floor(Math.random() * 25);
+
+for(let i = 0; i < 25; i++){
+
+    const tile = document.createElement("div");
+    tile.classList.add("tile");
+
+    tile.onclick = () => {
+
+        if(i === minePosition){
+            tile.classList.add("mine");
+            tile.innerHTML = "💣";
+            alert("Perdeste!");
+        }else{
+            tile.classList.add("safe");
+            tile.innerHTML = "💎";
+        }
+
+    };
+
+    game.appendChild(tile);
+}
+</script>
+
 </body>
 </html>
